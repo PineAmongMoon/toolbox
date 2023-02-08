@@ -9,7 +9,7 @@ export default function Layout() {
           <Link to="/">主页</Link>
         </li>
         <li>
-          <Link to="/password_random">密码生成器</Link>
+          <Link to="/password_generator">密码生成器</Link>
         </li>
         <li>
           <Link to="/ipv4calculater">ipv4计算器</Link>

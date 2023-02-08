@@ -8,7 +8,7 @@ import {
   punctuation,
 } from '@/utils/string';
 
-export default function PasswordRandom() {
+export default function PasswordGenerator() {
   const [password, setPassword] = useState('');
 
   const handleSubmit = (value: any) => {
