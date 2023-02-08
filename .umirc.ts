@@ -4,4 +4,5 @@ export default defineConfig({
   npmClient: 'yarn',
   base: '/toolbox',
   publicPath: '/toolbox/',
+  exportStatic: {},
 });
