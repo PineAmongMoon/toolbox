@@ -93,10 +93,12 @@ export class IPv4Network {
   }
 
   public get firstHostAddress(): string {
-    return IPv4Network.ntoa(this.networkValue + 1);
+    return this.networkSize >= 4 ? IPv4Network.ntoa(this.networkValue + 1) : '';
   }
 
   public get lastHostAddress(): string {
-    return IPv4Network.ntoa(this.boradcasValue - 1);
+    return this.networkSize >= 4
+      ? IPv4Network.ntoa(this.boradcasValue - 1)
+      : '';
   }
 }

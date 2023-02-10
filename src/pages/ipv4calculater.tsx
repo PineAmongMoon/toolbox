@@ -79,7 +79,10 @@ export default function IPv4Calculater() {
       >
         <InputNumber />
       </Form.Item>
+      <Form.Item label="网络规模">{network.networkSize}</Form.Item>
       <Form.Item label="网络地址">{network.networkAddress}</Form.Item>
+      <Form.Item label="第一个主机地址">{network.firstHostAddress}</Form.Item>
+      <Form.Item label="最后一个主机地址">{network.lastHostAddress}</Form.Item>
       <Form.Item label="广播地址">{network.boradcastAddress}</Form.Item>
     </Form>
   );
