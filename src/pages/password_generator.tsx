@@ -6,9 +6,12 @@ import {
   ascii_lowercase,
   ascii_uppercase,
   punctuation,
+  printable,
 } from '@/utils/string';
+import { sum } from 'lodash';
 
 export default function PasswordGenerator() {
+  const [form] = Form.useForm();
   const [password, setPassword] = useState('');
 
   const handleSubmit = (value: any) => {
@@ -31,17 +34,55 @@ export default function PasswordGenerator() {
       choose.push(choice(punctuation));
     }
 
+    while (choose.length < value.length) {
+      choose.push(choice(printable));
+    }
+
     setPassword(shuffled(choose).join(''));
   };
 
+  const getMinLength = () =>
+    sum(
+      Object.values(
+        form.getFieldsValue(['digit', 'lower', 'upper', 'punctuationSize']),
+      ),
+    );
+
   return (
     <>
-      <Form onFinish={handleSubmit}>
+      <Form
+        form={form}
+        onFinish={handleSubmit}
+        onValuesChange={() => {
+          const l = form.getFieldValue('length');
+          if (Number.isSafeInteger(l)) {
+            form.setFieldValue('length', Math.max(l, getMinLength()));
+          }
+        }}
+      >
+        <Form.Item
+          name="length"
+          label="密码长度"
+          initialValue={0}
+          rules={[
+            {
+              type: 'number',
+              validator: async (_rule, value) => {
+                if (value < getMinLength()) {
+                  throw new Error('总长度不应小于各项之和');
+                }
+                return true;
+              },
+            },
+          ]}
+        >
+          <InputNumber />
+        </Form.Item>
         <Form.Item
           name="digit"
           label="数字数量"
           initialValue={0}
-          rules={[{ type: 'number', min: 0, message: '' }]}
+          rules={[{ type: 'number', min: 0, message: '不应小于0' }]}
         >
           <InputNumber />
         </Form.Item>
@@ -49,7 +90,7 @@ export default function PasswordGenerator() {
           name="lower"
           label="小写字母数量"
           initialValue={0}
-          rules={[{ type: 'number', min: 0, message: '' }]}
+          rules={[{ type: 'number', min: 0, message: '不应小于0' }]}
         >
           <InputNumber />
         </Form.Item>
@@ -57,7 +98,7 @@ export default function PasswordGenerator() {
           name="upper"
           label="大写字母数量"
           initialValue={0}
-          rules={[{ type: 'number', min: 0, message: '' }]}
+          rules={[{ type: 'number', min: 0, message: '不应小于0' }]}
         >
           <InputNumber />
         </Form.Item>
@@ -65,7 +106,7 @@ export default function PasswordGenerator() {
           name="punctuationSize"
           label="特殊符号"
           initialValue={0}
-          rules={[{ type: 'number', min: 0, message: '' }]}
+          rules={[{ type: 'number', min: 0, message: '不应小于0' }]}
         >
           <InputNumber />
         </Form.Item>
