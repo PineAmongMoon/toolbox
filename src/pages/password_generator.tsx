@@ -53,11 +53,15 @@ export default function PasswordGenerator() {
       <Form
         form={form}
         onFinish={handleSubmit}
-        onValuesChange={() => {
-          const l = form.getFieldValue('length');
-          if (Number.isSafeInteger(l)) {
-            form.setFieldValue('length', Math.max(l, getMinLength()));
-          }
+        onValuesChange={(changedValue) => {
+          Object.entries(changedValue).forEach(([k, v]) => {
+            if (k !== 'length' && Number.isSafeInteger(v)) {
+              form.setFieldValue(
+                'length',
+                Math.max(v as number, getMinLength()),
+              );
+            }
+          });
         }}
       >
         <Form.Item
