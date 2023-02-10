@@ -74,6 +74,11 @@ export default function PasswordGenerator() {
                 return true;
               },
             },
+            {
+              type: 'number',
+              max: Number.MAX_SAFE_INTEGER,
+              message: `不应大于${Number.MAX_SAFE_INTEGER}`,
+            },
           ]}
         >
           <InputNumber />
@@ -82,7 +87,18 @@ export default function PasswordGenerator() {
           name="digit"
           label="数字数量"
           initialValue={0}
-          rules={[{ type: 'number', min: 0, message: '不应小于0' }]}
+          rules={[
+            {
+              type: 'number',
+              min: 0,
+              message: '不应小于0',
+            },
+            {
+              type: 'number',
+              max: Number.MAX_SAFE_INTEGER,
+              message: `不应大于${Number.MAX_SAFE_INTEGER}`,
+            },
+          ]}
         >
           <InputNumber />
         </Form.Item>
@@ -90,7 +106,18 @@ export default function PasswordGenerator() {
           name="lower"
           label="小写字母数量"
           initialValue={0}
-          rules={[{ type: 'number', min: 0, message: '不应小于0' }]}
+          rules={[
+            {
+              type: 'number',
+              min: 0,
+              message: '不应小于0',
+            },
+            {
+              type: 'number',
+              max: Number.MAX_SAFE_INTEGER,
+              message: `不应大于${Number.MAX_SAFE_INTEGER}`,
+            },
+          ]}
         >
           <InputNumber />
         </Form.Item>
@@ -98,7 +125,18 @@ export default function PasswordGenerator() {
           name="upper"
           label="大写字母数量"
           initialValue={0}
-          rules={[{ type: 'number', min: 0, message: '不应小于0' }]}
+          rules={[
+            {
+              type: 'number',
+              min: 0,
+              message: '不应小于0',
+            },
+            {
+              type: 'number',
+              max: Number.MAX_SAFE_INTEGER,
+              message: `不应大于${Number.MAX_SAFE_INTEGER}`,
+            },
+          ]}
         >
           <InputNumber />
         </Form.Item>
@@ -106,7 +144,18 @@ export default function PasswordGenerator() {
           name="punctuationSize"
           label="特殊符号"
           initialValue={0}
-          rules={[{ type: 'number', min: 0, message: '不应小于0' }]}
+          rules={[
+            {
+              type: 'number',
+              min: 0,
+              message: '不应小于0',
+            },
+            {
+              type: 'number',
+              max: Number.MAX_SAFE_INTEGER,
+              message: `不应大于${Number.MAX_SAFE_INTEGER}`,
+            },
+          ]}
         >
           <InputNumber />
         </Form.Item>
