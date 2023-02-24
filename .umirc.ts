@@ -5,4 +5,5 @@ export default defineConfig({
   base: '/toolbox',
   publicPath: '/toolbox/',
   exportStatic: {},
+  links: [{ rel: 'apple-touch-icon', href: '/toolbox/favicon.png' }],
 });
