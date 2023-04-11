@@ -58,7 +58,10 @@ export default function PasswordGenerator() {
             if (k !== 'length' && Number.isSafeInteger(v)) {
               form.setFieldValue(
                 'length',
-                Math.max(v as number, getMinLength()),
+                Math.max(
+                  form.getFieldValue('length') as number,
+                  getMinLength(),
+                ),
               );
             }
           });
